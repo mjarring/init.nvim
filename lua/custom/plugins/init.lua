@@ -6,4 +6,7 @@ return {
   {
     'tpope/vim-fugitive',
   },
+  {
+    'davidhalter/jedi-vim',
+  },
 }
