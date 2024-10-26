@@ -23,7 +23,6 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'vadimcn/codelldb',
   },
   keys = function(_, keys)
     local dap = require 'dap'
