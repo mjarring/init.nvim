@@ -7,9 +7,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- Set python virtual environemt for use with neovim
-vim.g.python3_host_prog = '/Users/arrington/.pyenv/versions/py3nvim/bin/python'
-
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -31,9 +28,9 @@ vim.opt.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
---[[vim.schedule(function()
+vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
-end)--]]
+end)
 
 -- Enable break indent
 vim.opt.breakindent = true
