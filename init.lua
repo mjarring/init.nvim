@@ -89,10 +89,15 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '')
+vim.keymap.set('n', '<right>', '')
+vim.keymap.set('n', '<up>', '')
+vim.keymap.set('n', '<down>', '')
+-- Also disable arrow keys in insert mode
+vim.keymap.set('i', '<left>', '')
+vim.keymap.set('i', '<right>', '')
+vim.keymap.set('i', '<up>', '')
+vim.keymap.set('i', '<down>', '')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
