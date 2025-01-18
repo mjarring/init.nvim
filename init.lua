@@ -591,6 +591,30 @@ require('lazy').setup({
           end,
         },
       }
+
+      -- SourceKit-LSP increasingly relies on the editor informing the server when certain files change.
+      -- This need is communicated through dynamic registration. You don’t have to understand what that
+      -- means, but Neovim doesn’t implement dynamic registration. You’ll notice this when you update
+      -- your package manifest, or add new files to your compile_commands.json file and LSP doesn’t
+      -- work without restarting Neovim.
+      --
+      -- Instead, we know that SourceKit-LSP needs this functionality, so we’ll enable it statically.
+      -- We’ll update our sourcekit setup configuration to manually set the didChangeWatchedFiles
+      -- capability.
+      --
+
+      -- configure Swift serve here since it is not installed via Mason
+      local lspconfig = require 'lspconfig'
+      lspconfig.sourcekit.setup {
+        -- capabilities = capabilities,
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        },
+      }
     end,
   },
 
