@@ -15,6 +15,8 @@ return {
   },
   opts = {
     filesystem = {
+      use_libuv_file_watcher = true,
+      bind_to_cwd = false,
       window = {
         mappings = {
           ['\\'] = 'close_window',

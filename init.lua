@@ -86,9 +86,6 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 
--- Auto change working directory
-vim.o.autochdir = true
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -139,6 +136,30 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = vim.api.nvim_create_augroup('arrington-handmade', { clear = true }),
+  desc = 'Load Handmade Hero Configuration',
+  callback = function()
+    local startup_dir = vim.fn.getcwd()
+    vim.notify('startup_dir: ' .. startup_dir, vim.log.levels.INFO)
+    local match = startup_dir:find('handmade-follow', 1, true)
+    if match then
+      vim.notify('Autocommand matched project path', vim.log.levels.INFO)
+      local directory_delimiter = package.config:sub(1, 1) -- '/' on Unix, '\' on Windows
+      local extra_config = startup_dir .. directory_delimiter .. 'init.lua'
+      vim.notify('File Path: ' .. extra_config, vim.log.levels.INFO)
+      local file = io.open(extra_config, 'r')
+      if file ~= nil then
+        vim.notify('File Exists, opening', vim.log.levels.INFO)
+        io.close(file)
+        dofile(extra_config)
+      end
+    else
+      vim.notify('Autocommand did NOT match project path', vim.log.levels.INFO)
+    end
   end,
 })
 
@@ -685,7 +706,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = false, cpp = false }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -697,6 +718,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        c = { 'clang-format' },
+        cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
