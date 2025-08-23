@@ -11,12 +11,10 @@ return {
   },
   lazy = false,
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '\\', ':Neotree reveal_force_cwd=false<CR>', desc = 'NeoTree reveal', silent = true },
   },
   opts = {
     filesystem = {
-      use_libuv_file_watcher = true,
-      bind_to_cwd = false,
       window = {
         mappings = {
           ['\\'] = 'close_window',
