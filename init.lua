@@ -110,6 +110,12 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- Disable shift + arrow keys in insert mode
+vim.keymap.set('i', '<S-left>', '<cmd>echo "Hit left by mistake!!"<CR>')
+vim.keymap.set('i', '<S-right>', '<cmd>echo "Hit right by mistake!!"<CR>')
+vim.keymap.set('i', '<S-up>', '<cmd>echo "Hit up by mistake!!"<CR>')
+vim.keymap.set('i', '<S-down>', '<cmd>echo "Hit down my mistake!!"<CR>')
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
